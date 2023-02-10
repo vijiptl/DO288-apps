@@ -10,6 +10,7 @@
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <jkube.build.switchToDeployment>true</jkube.build.switchToDeployment>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus-plugin.version>1.11.6.Final-redhat-00001</quarkus-plugin.version>
@@ -104,7 +105,18 @@
             <maven.home>${maven.home}</maven.home>
           </systemPropertyVariables>
         </configuration>
-      </plugin>
+</plugin>
+<!-- JKube Maven plugin -->
+
+<plugin>
+
+	<groupId>org.eclipse.jkube</groupId>
+
+	<artifactId>openshift-maven-plugin</artifactId>
+
+	<version>1.2.0</version>
+
+</plugin>
       <!-- Adding the jkube plugin configuration here -->
     </plugins>
   </build>
@@ -117,7 +129,18 @@
         </property>
       </activation>
       <build>
-        <plugins>
+	      <plugins>
+		      <!-- JKube Maven plugin -->
+
+		      <plugin>
+
+			      <groupId>org.eclipse.jkube</groupId>
+
+			      <artifactId>openshift-maven-plugin</artifactId>
+
+			      <version>1.2.0</version>
+
+		      </plugin>
           <plugin>
             <artifactId>maven-failsafe-plugin</artifactId>
             <version>${surefire-plugin.version}</version>
