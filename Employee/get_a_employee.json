@@ -1,0 +1,335 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "oracle_internal_mobil",
+        "description": "Internal Mobility in Oracle HCM",
+        "x-ibm-annotations": "true",
+        "x-ibm-application-name": "Internal Mobility - Oracle HCM",
+        "x-ibm-application-id": "ohcm_im_pos",
+        "x-ibm-skill-type": "imported",
+        "x-ibm-application-icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"48\" height=\"48\" fill=\"none\"><path fill=\"#fff\" d=\"M0 0h48v48H0z\" style=\"mix-blend-mode:multiply\"/><rect width=\"47\" height=\"47\" x=\".5\" y=\".5\" fill=\"#fff\" rx=\"7.5\"/><g clip-path=\"url(#a)\"><path fill=\"url(#b)\" d=\"M0 0h40v20H0z\" transform=\"translate(4 14)\"/></g><rect width=\"47\" height=\"47\" x=\".5\" y=\".5\" stroke=\"#E0E0E0\" rx=\"7.5\"/><defs><clipPath id=\"a\"><path fill=\"#fff\" d=\"M4 14h40v20H4z\"/></clipPath><pattern id=\"b\" width=\"1\" height=\"1\" patternContentUnits=\"objectBoundingBox\"><use xlink:href=\"#c\" transform=\"matrix(.00147 0 0 .00294 0 .353)\"/></pattern><image xlink:href=\"data:image/png;base64,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\" id=\"c\" width=\"680\" height=\"100\"/></defs></svg>"
+    },
+    "security": [
+        {
+            "basicAuth": []
+        }
+    ],
+    "servers": [
+        {
+            "url": "https://edrx-test.fa.us2.oraclecloud.com"
+        }
+    ],
+    "paths": {
+        "/hcmRestApi/resources/11.13.18.05/emps/{empsUniqID}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get an employee",
+                "description": "in oracle get a employee",
+                "operationId": "get_emps",
+                "parameters": [
+                    {
+                        "name": "empsUniqID",
+                        "in": "path",
+                        "description": "The unique identifier of the requisition",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Requisition corresponding to the provided RequisitionID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmployeeDetails"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Requisition found for the provided RequisitionID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "EmployeeDetails": {
+                "type": "object",
+                "properties": {
+                    "FirstName": {
+                        "title": "First Name",
+                        "maxLength": 150,
+                        "type": "string",
+                        "description": "Person's first name.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "CreationDate": {
+                        "title": "Creation Date",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": false,
+                        "readOnly": true,
+                        "x-queryable": true
+                    },
+                    "LicenseNumber": {
+                        "title": "License Number",
+                        "maxLength": 150,
+                        "type": "string",
+                        "description": "Person's driving license number.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "Gender": {
+                        "title": "Gender",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Person's gender. Valid values are defined in the list GenderLOV.",
+                        "nullable": true,
+                        "x-hints": {
+                            "controlType": "default"
+                        },
+                        "x-queryable": true
+                    },
+                    "WorkerType": {
+                        "maxLength": 30,
+                        "type": "string",
+                        "nullable": false,
+                        "readOnly": true,
+                        "x-queryable": true
+                    },
+                    "HireDate": {
+                        "type": "string",
+                        "description": "Hire date of the employee.",
+                        "format": "date",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "DateOfBirth": {
+                        "title": "Date of Birth",
+                        "type": "string",
+                        "description": "Date of birth of the person.",
+                        "format": "date",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "PreviousLastName": {
+                        "title": "Previous Last Name",
+                        "maxLength": 150,
+                        "type": "string",
+                        "description": "Previous last name of the person, if any.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "City": {
+                        "title": "Town or City",
+                        "maxLength": 60,
+                        "type": "string",
+                        "description": "Town or city in which the address is located.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "MaritalStatus": {
+                        "title": "Marital Status",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Person's marital status. Valid values are defined in the list MaritalStatusLOV.",
+                        "nullable": true,
+                        "x-hints": {
+                            "controlType": "default"
+                        },
+                        "x-queryable": true
+                    },
+                    "PersonId": {
+                        "title": "Person ID",
+                        "type": "integer",
+                        "description": "Internal identifier for the person.",
+                        "format": "int64",
+                        "nullable": false,
+                        "x-hints": {
+                            "precision": 18
+                        },
+                        "x-queryable": true
+                    },
+                    "Country": {
+                        "title": "Country",
+                        "maxLength": 60,
+                        "type": "string",
+                        "description": "Country in which the address is located.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "Region": {
+                        "title": "Region 1",
+                        "maxLength": 120,
+                        "type": "string",
+                        "description": "Primary region in which the address is located.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "LastName": {
+                        "title": "Last Name",
+                        "maxLength": 150,
+                        "type": "string",
+                        "description": "Person's last name.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "WorkPhoneNumber": {
+                        "title": "Number",
+                        "maxLength": 60,
+                        "type": "string",
+                        "description": "Work phone number.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "PostalCode": {
+                        "title": "Postal Code",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Postal code of the address.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "HomePhoneNumber": {
+                        "title": "Number",
+                        "maxLength": 60,
+                        "type": "string",
+                        "description": "Home phone number.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "LegalEntityId": {
+                        "type": "integer",
+                        "description": "Unique identifier for the legal entity. Valid values are defined in the list LegalEmployerLOV.",
+                        "nullable": false,
+                        "x-queryable": false,
+                        "x-hints": {
+                            "controlType": "default"
+                        }
+                    },
+                    "DisplayName": {
+                        "title": "Name",
+                        "maxLength": 240,
+                        "type": "string",
+                        "description": "Person's display name.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "PersonNumber": {
+                        "title": "Person Number",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Number assigned to a person to identify the person uniquely. Does not depend on the person type (employee, contingent worker, etc). Search on this attribute is not case sensitive.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "UserName": {
+                        "maxLength": 100,
+                        "type": "string",
+                        "description": "User name for the record. This value is optional and is automatically generated if not specified. Also works with UsernameMatching attribute. Search on this attribute is not case sensitive.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "NationalId": {
+                        "title": "National ID",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Primary key generated by the application.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "Religion": {
+                        "title": "Religion",
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "Person's religion. Valid values are defined in the list ReligionLOV.",
+                        "nullable": true,
+                        "x-hints": {
+                            "controlType": "choice"
+                        },
+                        "x-queryable": true
+                    },
+                    "WorkEmail": {
+                        "title": "Email",
+                        "maxLength": 240,
+                        "type": "string",
+                        "description": "Person's work email address. Search on this attribute is not case sensitive.",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "MiddleName": {
+                        "title": "Middle Names",
+                        "maxLength": 80,
+                        "type": "string",
+                        "description": "Person's middle name.",
+                        "nullable": true,
+                        "x-queryable": true
+                    },
+                    "EffectiveStartDate": {
+                        "title": "Effective Start Date",
+                        "type": "string",
+                        "description": "Date at the beginning of the period within which the employee is effective.",
+                        "format": "date",
+                        "nullable": false,
+                        "x-queryable": true
+                    },
+                    "LastUpdateDate": {
+                        "title": "Last Updated Date",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": false,
+                        "readOnly": true,
+                        "x-queryable": true
+                    }
+                },
+                "x-ibm-response-wrapper": true,
+                "additionalProperties": false
+            },
+            "Error": {
+                "type": "object",
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "A human readable error message",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    }
+}
